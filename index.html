@@ -40,13 +40,11 @@
         renderer="logarithmicDepthBuffer: true;"
         embedded
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
-    <!--
+
         <a-assets>
             <audio id="river" src="https://abousenko.github.io/ar/sound.mp3" preload="auto"></audio>
         </a-assets>
 
-        <a-entity sound="src: #river"></a-entity>
-         -->
             <a-nft
                     type="nft"
                     url="https://abousenko.github.io/ar/points/qr"
@@ -60,6 +58,7 @@
                         position="100 100 0"
                 >
                 </a-entity>
+                <a-entity sound="src: #river"></a-entity>
             </a-nft>
             <a-entity camera></a-entity>
         </a-scene>
