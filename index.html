@@ -1,29 +1,68 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
-    <script src="https://unpkg.com/aframe-gradient-sky@1.4.2/dist/gradientsky.min.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Image based tracking AR.js demo</title>
+    <!-- import aframe and then ar.js with image tracking / location based features -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+    <!-- style for the loader -->
+    <style>
+        .arjs-loader {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arjs-loader div {
+            text-align: center;
+            font-size: 1.25em;
+            color: white;
+        }
+    </style>
 </head>
-<body>
-<a-scene>
-    <a-entity id="rain" particle-system="preset: rain; color: #24CAFF; particleCount: 5000"></a-entity>
 
-    <a-entity id="sphere" geometry="primitive: sphere"
-              material="color: #EFEFEF; shader: flat"
-              position="0 0.15 -5"
-              light="type: point; intensity: 5"
-              animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.10 -5; loop: true"></a-entity>
+<body style="margin : 0px; overflow: hidden;">
+<!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+<div class="arjs-loader">
+    <div>Loading, please wait...</div>
+</div>
 
-    <a-entity id="ocean" ocean="density: 20; width: 50; depth: 50; speed: 4"
-              material="color: #9CE3F9; opacity: 0.75; metalness: 0; roughness: 1"
-              rotation="-90 0 0"></a-entity>
-
-    <a-entity id="sky" geometry="primitive: sphere; radius: 5000"
-              material="shader: gradient; topColor: 235 235 245; bottomColor: 185 185 210"
-              scale="-1 1 1"></a-entity>
-
-    <a-entity id="light" light="type: ambient; color: #888"></a-entity>
+<!-- a-frame scene -->
+<a-scene
+        vr-mode-ui="enabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+        embedded
+        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+    <!-- a-nft is the anchor that defines an Image Tracking entity -->
+    <!-- on 'url' use the path to the Image Descriptors created before. -->
+    <!-- the path should end with the name without the extension e.g. if file is trex.fset' the path should end with trex -->
+    <a-nft
+            type="nft"
+            url="<path-to-your-image-descriptors>"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5">
+        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+        <a-entity
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+                scale="5 5 5"
+                position="100 100 0"
+        >
+        </a-entity>
+    </a-nft>
+    <!-- static camera that moves according to the device movemenents -->
+    <a-entity camera></a-entity>
 </a-scene>
 </body>
 </html>
