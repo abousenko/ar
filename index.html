@@ -49,7 +49,7 @@
 
     <a-assets>
         <a-asset-item id="target-file" src="example-tracking-image.zpt"/>
-        <audio id="river" src="https://abousenko.github.io/ar/sound.mp3" preload="auto"></audio>
+        <!-- <audio id="river" src="https://abousenko.github.io/ar/sound.mp3" preload="auto"></audio>  -->
     </a-assets>
 
             <a-nft
@@ -59,7 +59,12 @@
                     smoothCount="10"
                     smoothTolerance=".01"
                     smoothThreshold="5">
-
+                <a-entity
+                        gltf-model="https://abousenko.github.io/ar/scene2.glb"
+                        scale="5 5 5"
+                        position="100 100 0"
+                >
+                </a-entity>
             </a-nft>
             <a-entity camera></a-entity>
         </a-scene>
