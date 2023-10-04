@@ -41,24 +41,25 @@
         embedded
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
 
-        <a-assets>
-            <audio id="river" src="https://abousenko.github.io/ar/sound.mp3" preload="auto"></audio>
-        </a-assets>
+    <!-- Ask user for camera permissions -->
+    <a-entity zappar-permissions-ui id="permissions"></a-entity>
+
+    <!-- Browser Compatibility -->
+    <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
+
+    <a-assets>
+        <a-asset-item id="target-file" src="example-tracking-image.zpt"/>
+        <audio id="river" src="https://abousenko.github.io/ar/sound.mp3" preload="auto"></audio>
+    </a-assets>
 
             <a-nft
                     type="nft"
-                    url="https://abousenko.github.io/ar/points/qr"
+                    url="https://abousenko.github.io/ar/points/qrc"
                     smooth="true"
                     smoothCount="10"
                     smoothTolerance=".01"
                     smoothThreshold="5">
-                <a-entity
-                        gltf-model="https://abousenko.github.io/ar/scene2.glb"
-                        scale="5 5 5"
-                        position="100 100 0"
-                >
-                </a-entity>
-                <a-entity sound="src: #river"></a-entity>
+
             </a-nft>
             <a-entity camera></a-entity>
         </a-scene>
