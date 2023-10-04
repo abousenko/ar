@@ -48,8 +48,8 @@
     <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
 
     <a-assets>
-        <a-asset-item id="target-file" src="example-tracking-image.zpt"/>
-        <!-- <audio id="river" src="https://abousenko.github.io/ar/sound.mp3" preload="auto"></audio>  -->
+        <a-asset-item id="target-file" src="points/qrc.zpt"/>
+        <audio id="river" src="https://abousenko.github.io/ar/sound.mp3" preload="auto"></audio>
     </a-assets>
 
             <a-nft
@@ -65,6 +65,7 @@
                         position="100 100 0"
                 >
                 </a-entity>
+                <a-entity sound="src: #river"></a-entity>
             </a-nft>
             <a-entity camera></a-entity>
         </a-scene>
